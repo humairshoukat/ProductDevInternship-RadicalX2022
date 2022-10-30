@@ -62,11 +62,11 @@ export default function DragAndDrop(props){
             onDrop = {handleDrop} 
             onDragOver = {dragOver}
             >
-              Drag File Here (replace by dragging another file)
+              <h3>Drag File Here(replace by dragging another file)</h3>
             </label>
 
         <section className = "file-icons">
-              <img src = {uploadFiles.icon} className = "icons" alt = "video-icon-png"/>
+              <img src = {uploadFiles.icon} className = "icons"/>
               <h4>{uploadFiles.name}</h4>
         </section>
 

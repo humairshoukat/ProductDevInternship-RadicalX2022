@@ -11,7 +11,7 @@ export default function CheckboxGenerator(props){
                 name = {ele[0]} 
                 onChange = {props.handleChange}
                 checked = {ele[1]}/>
-                <label htmlFor = {ele[0]}> {ele[0]} </label>
+                <label htmlFor = {ele[0]}>{ele[0]}</label>
             </section>
                 )
         }

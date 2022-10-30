@@ -1,6 +1,5 @@
 import React from "react"
 
-
 export default function CompanyName(props){
     //making an object as we need to use it alongside form in JSX
     const [name, setName] = React.useState(
@@ -26,16 +25,18 @@ export default function CompanyName(props){
 
 
     return(
-        <form className = "company-name">
-            <label htmlFor = "name">
-            <input 
-            name = "compName"
-            placeholder="Enter companies name"
-            id = "name" 
-            value = {name.compName} 
-            onChange = {handleInputs}
-            />
-            </label>
-        </form>
+        <section className = "comp-details">
+            <form className = "company-name">
+                <label htmlFor = "name">
+                <input 
+                name = "compName"
+                placeholder="Enter companies name"
+                id = "name" 
+                value = {name.compName} 
+                onChange = {handleInputs}
+                />
+                </label>
+            </form>
+        </section>
     )
 }

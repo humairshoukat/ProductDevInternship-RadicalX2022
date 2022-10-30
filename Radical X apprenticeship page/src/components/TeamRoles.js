@@ -16,12 +16,13 @@ export default function AddTeamRoles(props){
     const [req, setReq] = React.useState({...ReqSkills})
     const [loc, setLoc] = React.useState({...Locations})
 
-    const member = {role: "",
+    const [member, setMember] = React.useState({role: "",
     roleDescription: "",
     reqSkills: req,
     comSkills: com,
     hours: "",
-    locations: loc}
+    locations: loc,
+    key: 0})
 
     function handleClick(){
         setOverlay(!overlay);
@@ -32,8 +33,7 @@ export default function AddTeamRoles(props){
     // }
 
     //console.log("Team Data: ", team)
-    React.useEffect( () => { //bug: Displaying the selected roles
-        //console.log("USe effect working")
+    React.useEffect( () => { 
         props.func( prevVal => 
         ({
             ...prevVal,
@@ -41,7 +41,17 @@ export default function AddTeamRoles(props){
         })
         )
     }, [team.length] //had to use array length, could not just use array as specifier
-    )               //because array/object 
+    )    //because array/object 
+
+    function removeTeam(event){
+        let key = event.target.id
+        setTeam ( team.filter( role => role.key != key)
+                        .map( (role, index) => {
+                            role.key = index
+                            return role
+                        }
+                        ))
+    }
 
     // function Display(array){ //need to alter the border display function
     //     array.map( (obj, index) => { //mapping every instance of the array by wrapping it around JSX
@@ -69,28 +79,33 @@ export default function AddTeamRoles(props){
 
     return(
         <section className = "members">
-            <h4>Team Roles</h4>
-            <button className = "add-members" onClick = {handleClick}>{/*icon*/} Add Team Members</button>
-            <Overlay 
-            innerForm = {RolesOverlay} 
-            hidden = {overlay} 
-            state = {setOverlay}  
-            team = {team}
-            setTeam = {setTeam}
-            data = {member}
-            com = {com}
-            setCom = {setCom}
-            req = {req}
-            setReq = {setReq}
-            loc = {loc}
-            setLoc = {setLoc}
-            /> 
-
-            {/*disp func
-            team.filter( (ele) => ele[1] === true) //filtering objects with true value and making an array
-            .map( (ele, index) => //sending that array to EleDisplay function
-            EleDisplay( {name: ele[0], key: index}, deleteBox ) //as an object so easier to interpret
-            */}        
+            <header>
+                <h3>Team Roles</h3>
+                <button className = "add-members" onClick = {handleClick}>{/*icon*/} Add Team Members</button>
+                <Overlay 
+                innerForm = {RolesOverlay} 
+                hidden = {overlay} 
+                state = {setOverlay}  
+                team = {team}
+                setTeam = {setTeam}
+                data = {member}
+                setData = {setMember}
+                com = {com}
+                setCom = {setCom}
+                req = {req}
+                setReq = {setReq}
+                loc = {loc}
+                setLoc = {setLoc}
+                // index = {team.length}
+                /> 
+            </header>
+            
+            {team.map( (ele, index) => {
+                ele.key = index
+                return ele
+            })
+            .map( ele => (EleDisplay( ele, removeTeam))   )
+            }       
         </section>
     )
 }

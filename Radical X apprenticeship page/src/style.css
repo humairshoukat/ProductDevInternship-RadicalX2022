@@ -6,12 +6,14 @@ html{
 *{
     box-sizing: border-box;
     padding: 0;
-    margin:0
+    margin:0;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 body{
     margin: 20px;
     width: 80vw;
+    position: relative;
 }
 
 .form{
@@ -66,21 +68,20 @@ LOGO AND DESCRIPTION
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    position: relative;
 }
 
 .upload-icon{
     background-color: rgba(47, 36, 255, 0.86);
     color: white;
     border-radius: 2px;
+    z-index: 2;
 }
 
 .img{
     width: 80px;
     height: 80px;
-    position: absolute;
     border-radius: 20px;
-    z-index: -1;
+    z-index: 1;
 }
 
 /*===========================================
@@ -95,10 +96,9 @@ DRAG AND DROP FILE
 }
 .drop-zone{
     border: 2px solid grey;
-    flex-basis: 50%;
+    flex-basis: 100%;
     display: flex;
     justify-content: center;
-    height: 50px;
 }
 
 .dynamic-files{
@@ -122,21 +122,43 @@ TEAM ROLES
 .members{
     border: 1px solid black;
     display: grid;
-    grid-template-columns: 100px 150px auto;
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto; /*to accompany as many members as desired*/
     gap: 5px;
-    position: relative;
+    max-width: inherit;
 }
 
 .overlay{
-    background-color: orange;
-    width: 80vw;
-    margin: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
     position: absolute;
+}
+
+.inner-overlay{
+    background-color: white;
+    border: 1px solid purple;
+    z-index: 3;
+    position:absolute;
+    width: 100%;
+    padding: 24px;
+    margin-top: 50px;
+    border-radius: 24px;
+    gap: 20px;
 }
 
 .checkboxes{
     background-color: white;
+}
+
+.checkbox-text{
+    display: flex;
+}
+
+.members > header{
+    display: flex;
+    width: inherit;
+    grid-area: 1 / 1 / -4 / 4;
 }
 
 /*==============================================
@@ -144,15 +166,90 @@ DiSPLAYING SELECTED OPTIONS
 ================================================*/
 
 .box{
-    display: flex;
+    display: grid;
     border: 2px solid black;
-    flex-shrink: 1;
+    grid-template-columns: repeat(1fr, minmax(min(150px,80%), 2fr));
+    grid-template-rows: auto;
     transition: all 2s;
+    font-size: 0.70rem;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    gap: 5px;
+    /*n = name, b = blurb*/
+}
+
+.close-icon{
+    grid-area: 1 / 3 / -1 / 4;
+    align-items: flex-end;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
 .box > .close-icon:hover{
     opacity: 60%;
     border: 1px solid grey;
     cursor: pointer;
-    transition: border 2s;
 }
+
+
+.box-name{
+    grid-area:  1 / auto / -1 / 3; 
+}
+
+.box-blurb{
+    grid-area: 2 / 1 / 3 / -1;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: visible;
+    overflow-wrap: ellipse; /*need to do smthn with this
+    set specific amount of characters and break after that, adding... at the end*/
+}
+
+.skill-display{
+    border: 1px solid yellow;
+}
+
+.face{
+    border-radius: 5px;
+    height: 30px;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+
+/*==============================================
+TEAM ADMIN
+================================================*/
+.mentor{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    /* grid-template-rows: 4;
+    grid-template-rows: 3; */
+}
+
+/* .mentor > .face{
+    grid-area: f
+}
+
+.add-members{
+    grid-area: a;
+}
+
+.mentor-name{
+    grid-area: n;
+}
+
+.mentor > .email{
+    grid-area: e;
+}
+
+.mentor > .url{
+    grid-area: u;
+}
+
+.mentor > button{
+    grid-area: b;
+} */

@@ -1,34 +1,53 @@
-import React from "react"
-import UploadImg from "./components/uploadImg"
+import React, { useEffect } from "react"
 import CompanyName from "./components/CompanyName"
 import DragAndDrop from "./components/Drag&Drop"
 import Team from "./components/TeamType"
+import UploadImg from "./components/uploadImg"
 import Roles from "./components/TeamRoles"
+import greyBackground from "./images/empty-bakground.jpg"
+import Mentors from "./components/Mentors"
+import Timeline from "./components/Timeline"
+
+//Elegant? no. functional? yes
+//need to fix the image uploader problem
 
 export default function App(){
     const [data, setData] = React.useState({
         companyName: "",
-        pic: "",
+        pic: greyBackground,
         video: {name: "", data: ""},
         teamType: "",
-        teams: []
+        teams: [],
+        mentors: [],
+        time: {}
     })
 
-    console.log(data);
+    //need to send this object to backend and we are done
     return(
-        <main>
-            <section className = "company-description-title">
-                <article className = "heading">Company Logo & Apprenticeship Title</article>
-                <UploadImg func = {setData}/>
-                <CompanyName func = {setData}/>
-            </section>
+        // <SetterContext.Provider>
+            <main>
+                <section className = "company-description-title">
+                    <h3 className = "heading">Company Logo & Apprenticeship Title</h3>
+                    < UploadImg
+                    value = {data.pic}
+                    name = "pic"
+                    onChange = {setData}
+                    />
+                    <CompanyName func = {setData} data = {data}/>
+                </section>
 
-            <DragAndDrop func = {setData}/> 
-            
-            <Team func = {setData}/>
+                <DragAndDrop func = {setData}/> 
+                
+                <Team func = {setData}/>
 
-            <Roles func = {setData}/>
+                <Roles func = {setData}/>
 
-        </main>
+                <Mentors func = {setData}/>
+                
+                <h3>Time Period</h3>
+                <Timeline func = {setData}/>
+            </main>
+        //</SetterContext.Provider>
+        
     )
 }
