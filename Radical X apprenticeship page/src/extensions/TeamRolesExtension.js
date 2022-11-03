@@ -108,8 +108,6 @@ export default function OverlayPrompt(props){
     //rendering
     return(
         <fieldset className = "form">
-
-            <h3>Add Role</h3>
             <label htmlFor = "role"></label>
 
             <select 

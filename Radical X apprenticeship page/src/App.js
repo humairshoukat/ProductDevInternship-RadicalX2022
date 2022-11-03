@@ -7,13 +7,16 @@ import Roles from "./components/TeamRoles"
 import greyBackground from "./images/empty-bakground.jpg"
 import Mentors from "./components/Mentors"
 import Timeline from "./components/Timeline"
+import Description from "./components/CompanyDes"
 
 //Elegant? no. functional? yes
-//need to fix the image uploader problem
+//need to fix termination of overlay
 
 export default function App(){
     const [data, setData] = React.useState({
         companyName: "",
+        companyDescription: "",
+        apprenticeshipDescription: "",
         pic: greyBackground,
         video: {name: "", data: ""},
         teamType: "",
@@ -35,6 +38,35 @@ export default function App(){
                     />
                     <CompanyName func = {setData} data = {data}/>
                 </section>
+
+                <Description setData = {setData} 
+                data = {data} 
+                name = "companyDescription"
+                value = {data.companyDescription}
+                className = "Company Description"/>
+                {/* <h3>Company Description</h3> 
+                <textarea 
+                className = "comp-description" 
+                name = "compDescription"
+                value = {data.companyDescription}
+                onChange = {() => setData(
+                    prevVal => {
+                        ...prevVal,
+                        companyDescription: value
+                    }
+                )}></textarea>
+
+                <h3>Apprenticeship Description</h3>
+                <textarea 
+                className = "apprenticeship" 
+                name = "compDescription"
+                value = {data.apprenticeshipDescription}
+                onChange = {() => setData(
+                    prevVal => ({
+                        ...prevVal,
+                        apprenticeshipDescription: value
+                    })
+                )}></textarea> */}
 
                 <DragAndDrop func = {setData}/> 
                 

@@ -19,24 +19,22 @@ export default function CompanyName(props){
     //useEffect to prevent infinite rendering and only updating the values in App
     //when the company names changes
     React.useEffect(  () => stateFunction( prevVal => (
-        {...prevVal, companyName: name.compName}
+        {...prevVal,
+            companyName: name.compName,
+        }
         )), [name.compName]
     )
 
 
     return(
         <section className = "comp-details">
-            <form className = "company-name">
-                <label htmlFor = "name">
                 <input 
                 name = "compName"
                 placeholder="Enter companies name"
-                id = "name" 
                 value = {name.compName} 
                 onChange = {handleInputs}
                 />
-                </label>
-            </form>
+
         </section>
     )
 }

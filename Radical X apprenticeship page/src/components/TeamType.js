@@ -24,21 +24,23 @@ export default function TeamType(props){
     )
 
     return (
-        <fieldset>
-
+        <section className = "team-type">
+            <h3>Team Types</h3>
+            <fieldset className = "team-type-container">
             {data.map( //array used to generate all the roles, so we only need to change original Data for new cohorts
                 (ele, index) => ( //function to a JSX snippet for each object in file
                 <section className = "team-container" key = {index}>
                     <input type="radio" id= {ele.title} name="cohort" value= {ele.title} onChange = {handleChange} checked = {team.cohort ===  ele.title}/>
                     <label htmlFor= {ele.title}>
                         {ele.icon}
-                        <span className = "cohorts">{ele.title}</span>
                     </label>
+                    <p className = "cohorts">{ele.title}</p>
                 </section>
                 )
             )}
 
-        </fieldset>
+            </fieldset>
+        </section>
 
     )
 }

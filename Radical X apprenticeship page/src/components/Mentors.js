@@ -30,7 +30,6 @@ export default function AddMentor(props){
 
     function removeMentor(event){
         let key = event.target.id
-        console.log(typeof key)
         //console.log("out: ", key, mentorList.filter( ppl => ppl.key != key))
         setMentorList(mentorList.filter( ppl => ppl.key != key)
             .map( (ppl, index) => {

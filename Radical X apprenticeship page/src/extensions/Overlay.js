@@ -29,6 +29,11 @@ export default function Overlay(props){
             className = "overlay" 
             onSubmit = {handleSubmit}>
                 <section className = "inner-overlay">
+                <header className = "overlay-header">
+                    <h3>Add Role</h3>
+                    <button type = "submit">Save</button>
+                    <button type = "button" className = "close-icon" onClick = {() => props.state(!props.hidden)}>x</button> {/**needs to override and close this overlay */}
+                </header>
                     <props.innerForm 
                     handleData = {props.setData} 
                     data = {props.data}
@@ -39,7 +44,6 @@ export default function Overlay(props){
                     loc = {loc}
                     setLoc = {setLoc}
                     />
-                    <button type = "submit">Click Here</button>
                 </section>
             </form>
     )
